@@ -1,14 +1,31 @@
 # Travlr Getaways Travel Website Fullstack Development-
-You are a software developer working for a software development company. Your supervisor assigned you to build a travel booking website for a new client, Travlr Getaways. The marketing department at Travlr Getaways has provided the specs and a wireframe to guide the development of the website. Your role as a software developer is to produce a fully functional travel web application that meets Travlr Getaways’ requirements:
+MEAN (MongoDB, Express, Angular, Node.js)
 
-“We are looking to create a travel booking site for our customers to book travel packages. Our customers must be able to create an account, search for travel packages by location and price point, and book reservations with our travel agency. Customers must also be able to visit our website regularly before their trip to see their itineraries. We are also seeking to have an admin-only site where Travlr Getaways administrators can maintain a customer base, available trip packages, and pricing for each item and package.”
+Architecture
+Express with HTML/CSS/JavaScript was used for the customer-facing portion. This approach was straightforward, serving static pages with dynamic functionality powered by JavaScript. It allowed for rapid delivery of a functional interface that users could interact with immediately without loading a large application bundle.
 
-Begin by exploring the architecture of a full stack web application that uses the MEAN stack. MEAN stands for the essential full stack tools: MongoDB, Express, Angular, and Node.js. These tools are available to you to develop the app. First, you must map out the architectural components and set up the development environment. This step includes completing your initial setup of the Node.js server and the Express framework. Next, you will customize the customer-facing webpage to align with the wireframe provided and meet Travlr Getaways’ vision.
+Angular Single-Page Application (SPA) was used for the administrative portal. Angular provided robust client-side routing, reusable components, form validation, and a modular architecture. This allowed us to build a more complex, dynamic interface ideal for managing trips, users, and bookings.
 
-The wireframe will be an initial reference to guide the construction of a static customer-facing website using HTML, CSS, and JavaScript. You are responsible for building the functionality of the front end and considering both client- and server-side coding. You must think ahead about the administrator interface, how you will generate request responses using traveler search criteria, and how you will collect login identification. Once completed, you will focus on the server side of the full stack application and set up the MongoDB database.
+Using MongoDB, a NoSQL database, aligned well with the flexibility of our data models. Travel packages, user profiles, and bookings often vary in structure, and MongoDB’s document-based schema allowed us to iterate quickly without rigid schemas. This was especially beneficial during the prototype and testing phases where requirements evolved.
+ Functionality
+JSON (JavaScript Object Notation) is a data interchange format, while JavaScript is a scripting language. In this project, JSON acted as the bridge between the frontend and backend. For example, when a user submits a booking form, the Angular app sends a JSON object to the Express API, which then updates the MongoDB database. Similarly, when admins view available trips, the frontend parses JSON data received from the backend to dynamically render UI components.
+Throughout the project, I refactored several components to enhance maintainability:
+Moved repeated HTML snippets in Angular into reusable components (like trip cards and itinerary views).
 
-Next, you will code the backend of the application. You must create and configure a NoSQL database with data models and a schema for data files and storage. Using this database, you can store travel booking trips. You can create JSON files containing initial data for seeding the database to enable testing of the RESTful API routes. Then you will populate the database and can view the seeded collections and documents in the database. You must wire the database to the server, test the RESTful API, and refactor the code to work successfully with the front end.
+Modularized the backend into separate controllers and services, improving separation of concerns.
+Benefits included reduced code duplication, easier debugging / testing, and faster development for future features.
 
-Once you have completed the customer front-end development and designed the back-end architecture for building a full stack travel application, you will be ready to produce a more complex front end to support the administrative functions to manage the database.
+ Testing
+API testing played a key role in validating functionality:
+GET, POST, PUT, DELETE methods were tested using Postman and Angular service calls.
 
-You will then complete the last few steps of the full stack development for Travlr Getaways. You must complete the client single-page application (SPA) using Angular, add security features, and do final testing on the full stack web application. You will use the Angular command line interface (CLI) to build components and services for the client-facing front end. Angular offers many fully integrated tools to facilitate the build. Once completed, you will test the application with the API and make certain the server returns the data properly. Finally, Travlr Getaways wants you to add a layer of security that applies to server-side applications to produce web tokens for web login authentication.
+
+Example: The /api/trips endpoint was tested for retrieving all available trips, while /api/trips/:id tested updating specific trip data.
+
+
+For security, we added JWT-based authentication to protect admin routes. Testing these routes required simulating login and attaching valid tokens to headers.
+
+
+The added security layer introduced challenges. For instance, invalid or expired tokens returned 401 errors, which needed proper handling in both backend responses and Angular guards to redirect users appropriately.
+Understanding how HTTP methods, RESTful endpoints, and authentication middleware work together was crucial in building a secure and functional full stack app.
+Angular offers many fully integrated tools to facilitate the build. Once completed, you will test the application with the API and make certain the server returns the data properly. Finally, Travlr Getaways wants you to add a layer of security that applies to server-side applications to produce web tokens for web login authentication.
